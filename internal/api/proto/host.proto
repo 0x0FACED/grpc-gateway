@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package api;
+
+option go_package = "internal/api/generated;generated";
+
+service HostService {
+  rpc SetHostname(SetHostnameRequest) returns (SetHostnameResponse);
+  rpc GetDNSServers(GetDNSServersRequest) returns (GetDNSServersResponse);
+  rpc AddDNSServer(AddDNSServerRequest) returns (AddDNSServerResponse);
+  rpc RemoveDNSServer(RemoveDNSServerRequest) returns (RemoveDNSServerResponse);
+}
+
+message SetHostnameRequest {
+  string hostname = 1;
+}
+
+message SetHostnameResponse {
+  bool success = 1;
+}
+
+message GetDNSServersRequest {}
+
+message GetDNSServersResponse {
+  repeated string servers = 1;
+}
+
+message AddDNSServerRequest {
+  string server = 1;
+}
+
+message AddDNSServerResponse {
+  bool success = 1;
+}
+
+message RemoveDNSServerRequest {
+  string server = 1;
+}
+
+message RemoveDNSServerResponse {
+  bool success = 1;
+}
