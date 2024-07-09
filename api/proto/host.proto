@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+package api;
+
+option go_package = "grpc-gateway/api/generated;api";
+
+import "googleapis/google/api/annotations.proto";
+
+service HostService {
+  rpc SetHostname(SetHostnameRequest) returns (SetHostnameResponse) {
+    option (google.api.http) = {
+      post: "/v1/hostname"
+      body: "*"
+    };
+  }
+  rpc GetDNSServers(GetDNSServersRequest) returns (GetDNSServersResponse) {
+    option (google.api.http) = {
+      get: "/v1/dns-servers"
+    };
+  }
+  rpc AddDNSServer(AddDNSServerRequest) returns (AddDNSServerResponse) {
+    option (google.api.http) = {
+      post: "/v1/dns-servers"
+      body: "*"
+    };
+  }
+  rpc RemoveDNSServer(RemoveDNSServerRequest) returns (RemoveDNSServerResponse) {
+    option (google.api.http) = {
+      delete: "/v1/dns-servers/{server}"
+    };
+  }
+}
+
+message SetHostnameRequest {
+  string hostname = 1;
+}
+
+message SetHostnameResponse {
+  bool success = 1;
+}
+
+message GetDNSServersRequest {}
+
+message GetDNSServersResponse {
+  repeated string servers = 1;
+}
+
+message AddDNSServerRequest {
+  string server = 1;
+}
+
+message AddDNSServerResponse {
+  bool success = 1;
+}
+
+message RemoveDNSServerRequest {
+  string server = 1;
+}
+
+message RemoveDNSServerResponse {
+  bool success = 1;
+}
