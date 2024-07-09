@@ -1,0 +1,215 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "api/proto/host.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "HostService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/dns-servers": {
+      "get": {
+        "operationId": "HostService_GetDNSServers",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiGetDNSServersResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "HostService"
+        ]
+      },
+      "post": {
+        "operationId": "HostService_AddDNSServer",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiAddDNSServerResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiAddDNSServerRequest"
+            }
+          }
+        ],
+        "tags": [
+          "HostService"
+        ]
+      }
+    },
+    "/v1/dns-servers/{server}": {
+      "delete": {
+        "operationId": "HostService_RemoveDNSServer",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiRemoveDNSServerResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "server",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "HostService"
+        ]
+      }
+    },
+    "/v1/hostname": {
+      "post": {
+        "operationId": "HostService_SetHostname",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/apiSetHostnameResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/apiSetHostnameRequest"
+            }
+          }
+        ],
+        "tags": [
+          "HostService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "apiAddDNSServerRequest": {
+      "type": "object",
+      "properties": {
+        "server": {
+          "type": "string"
+        }
+      }
+    },
+    "apiAddDNSServerResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        }
+      }
+    },
+    "apiGetDNSServersResponse": {
+      "type": "object",
+      "properties": {
+        "servers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "apiRemoveDNSServerResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        }
+      }
+    },
+    "apiSetHostnameRequest": {
+      "type": "object",
+      "properties": {
+        "hostname": {
+          "type": "string"
+        }
+      }
+    },
+    "apiSetHostnameResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}
