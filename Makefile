@@ -26,10 +26,10 @@ proto:
 
 build:
 	go build -o bin/server cmd/server/main.go
-	go build -o bin/client cmd/client/main.go
+	go build -o bin/client cmd/client/cli.go
 
 server:
 	go run cmd/server/main.go
 
 client:
-	go run cmd/client/main.go
+	go run cmd/client/cli.go
