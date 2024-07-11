@@ -145,6 +145,9 @@
       "properties": {
         "success": {
           "type": "boolean"
+        },
+        "error": {
+          "type": "string"
         }
       }
     },
@@ -164,6 +167,9 @@
       "properties": {
         "success": {
           "type": "boolean"
+        },
+        "error": {
+          "type": "string"
         }
       }
     },
