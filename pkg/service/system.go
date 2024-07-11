@@ -61,6 +61,9 @@ func removeDNSServer(server string) error {
 			newLines = append(newLines, line)
 		}
 	}
+	if len(lines) == len(newLines) {
+		return fmt.Errorf("not found")
+	}
 	err = os.WriteFile("/etc/resolv.conf", []byte(strings.Join(newLines, "\n")), 0644)
 	if err != nil {
 		return err
