@@ -1,6 +1,7 @@
 package service
 
 import (
+	"fmt"
 	"os"
 	"os/exec"
 	"strings"
@@ -27,6 +28,16 @@ func getDNSServers() ([]string, error) {
 }
 
 func addDNSServer(server string) error {
+	existingServers, err := getDNSServers()
+	if err != nil {
+		return err
+	}
+	for _, s := range existingServers {
+		if s == server {
+			return fmt.Errorf("server already exists")
+		}
+	}
+
 	f, err := os.OpenFile("/etc/resolv.conf", os.O_APPEND|os.O_WRONLY, 0600)
 	if err != nil {
 		return err
