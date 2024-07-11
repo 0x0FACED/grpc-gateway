@@ -1,4 +1,4 @@
-This document is available on English ---> [README_eng.md]
+This document is available on English ---> [English documentation](README.md)
 
 # gRPC Gateway Example
 
@@ -41,10 +41,10 @@ make all
 
 CLI поддерживает 4 команды:
 
-1. set-hostname -> устанавливает новое имя хоста;
-2. get-dns-servers -> получает список dns-серверов;
-3. add-dns-server -> добавляет новый dns-сервер;
-4. remove-dns-server -> удаляет указанный dns-сервер.
+1. `set-hostname` -> устанавливает новое имя хоста;
+2. `get-dns-servers` -> получает список dns-серверов;
+3. `add-dns-server` -> добавляет новый dns-сервер;
+4. `remove-dns-server` -> удаляет указанный dns-сервер.
 
 P. S. 
 Чтобы была возможность добавить сервер или удалить, нужно, к примеру, изменить права доступа к файлу:
