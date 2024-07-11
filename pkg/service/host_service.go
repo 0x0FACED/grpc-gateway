@@ -28,7 +28,10 @@ func (s *HostService) GetDNSServers(ctx context.Context, req *api.GetDNSServersR
 func (s *HostService) AddDNSServer(ctx context.Context, req *api.AddDNSServerRequest) (*api.AddDNSServerResponse, error) {
 	err := addDNSServer(req.Server)
 	if err != nil {
-		return &api.AddDNSServerResponse{Success: false}, err
+		return &api.AddDNSServerResponse{
+			Success: false,
+			Error:   err.Error(),
+		}, err
 	}
 	return &api.AddDNSServerResponse{Success: true}, err
 }
@@ -36,7 +39,10 @@ func (s *HostService) AddDNSServer(ctx context.Context, req *api.AddDNSServerReq
 func (s *HostService) RemoveDNSServer(ctx context.Context, req *api.RemoveDNSServerRequest) (*api.RemoveDNSServerResponse, error) {
 	err := removeDNSServer(req.Server)
 	if err != nil {
-		return &api.RemoveDNSServerResponse{Success: false}, err
+		return &api.RemoveDNSServerResponse{
+			Success: false,
+			Error:   err.Error(),
+		}, err
 	}
 	return &api.RemoveDNSServerResponse{Success: true}, nil
 }
